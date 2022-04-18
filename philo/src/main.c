@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lemarque < lemarque@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 00:12:03 by lemarque          #+#    #+#             */
-/*   Updated: 2022/04/07 00:44:17 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/04/18 00:35:24 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 int main(int argc, char **argv)
 {
+	t_data data;
+	t_philo *philos;
 	check_args(argc, argv);
+	init_data(&data, argc, argv);
+	init_philosophers(&philos, &data);
 }

@@ -1,7 +1,7 @@
 NAME = philo
 
 SRC_DIR = ./src
-SRC = main.c libft.c check_args.c
+SRC = main.c libft.c check_args.c init.c
 SRC_PATH = $(addprefix$(SRC_DIR)/, $(SRC))
 OBJ_DIR = ./objs
 OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))

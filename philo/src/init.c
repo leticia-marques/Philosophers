@@ -6,7 +6,7 @@
 /*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:21:08 by lemarque          #+#    #+#             */
-/*   Updated: 2022/04/18 00:32:30 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/04/18 21:54:42 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	init_philosophers(t_philo **philos, t_data *data)
 		(*philos)[i].total_meals = 0;
 		(*philos)[i].data = data;
 		(*philos)[i].left_fork = &data->forks[i];
-		(*philos)[i].right_fork = &data->forks[i];
+		(*philos)[i].right_fork = &data->forks[i+1];
 		(*philos)[i].last_meal = 0;
 	}
 }

@@ -6,6 +6,14 @@
 #include<stdlib.h>//malloc
 #include<stdio.h>//printf
 #include<sys/time.h>
+
+
+# define	EAT 1
+# define	SLEEP 2
+# define	THINK 3
+# define	FORK 4
+# define	DIED 5
+
 typedef struct s_data
 {
 	int					philos_number;
@@ -41,6 +49,8 @@ int		ft_atoi(const char *str);
 void	check_args(int argc, char **argv);
 void	init_data(t_data *data, int argc, char **argv);
 void	init_philosophers(t_philo **philos, t_data *data);
+void	print_actions(int act);
+void	eat(t_philo *philo);
 
 
 #endif

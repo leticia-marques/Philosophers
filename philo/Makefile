@@ -1,7 +1,7 @@
 NAME = philo
 
 SRC_DIR = ./src
-SRC = main.c libft.c check_args.c init.c
+SRC = main.c libft.c check_args.c init.c threads.c actions.c utils.c
 SRC_PATH = $(addprefix$(SRC_DIR)/, $(SRC))
 OBJ_DIR = ./objs
 OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
@@ -21,7 +21,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 $(NAME): $(OBJ_FILES)
 		$(MKDIR)
-		$(CC) $(CFLAGS) $(INCLUDES) $(OBJ_FILES) -o $(NAME)
+		$(CC) $(CFLAGS) $(INCLUDES) $(OBJ_FILES) -pthread -o $(NAME)
 
 clean:
 		$(RM) $(OBJ_DIR)

@@ -6,7 +6,7 @@
 /*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 00:47:29 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/22 19:47:25 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/23 17:16:21 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,15 @@ static void	*call_actions(void *philo_void)
 
 	philo = (t_philo *)philo_void;
 	if (philo->id % 2 == 0)
-		usleep(700);
+		usleep(50);
 	pthread_mutex_lock(philo->lock_meals);
 	philo->data->timestamp = get_time();
 	pthread_mutex_unlock(philo->lock_meals);
 	while (philo->data->dinner_is_over == 0)
 	{
 		eat(philo);
-		// pthread_mutex_lock(philo->lock_meals);
-		// if(philo->data->dinner_is_over == 1)
-		// {
-		// 	pthread_mutex_unlock(philo->lock_meals);
-		// 	return (NULL);
-		// }
-		// pthread_mutex_unlock(philo->lock_meals);
+		if(check_dinner(philo) == 1)
+			return (NULL);
 		philo_sleep(philo);
 		think(philo);
 	}

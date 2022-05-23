@@ -6,7 +6,7 @@
 /*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:21:08 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/22 20:10:20 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:35:33 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void	init_philosophers(t_philo **philos, t_data *data)
 	{
 		(*philos)[i].lock_meals = (pthread_mutex_t *) \
 				malloc(sizeof(pthread_mutex_t));
-		(*philos)[i].is_alive = (pthread_mutex_t *) \
-				malloc(sizeof(pthread_mutex_t));
+		// (*philos)[i].is_alive = (pthread_mutex_t *)
+		// 		malloc(sizeof(pthread_mutex_t));
 		pthread_mutex_init((*philos)[i].lock_meals, NULL);
-		pthread_mutex_init((*philos)[i].is_alive, NULL);
+		// pthread_mutex_init((*philos)[i].is_alive, NULL);
 		(*philos)[i].id = i + 1;
 		(*philos)[i].total_meals = 0;
 		(*philos)[i].data = data;

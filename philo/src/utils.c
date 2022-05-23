@@ -6,7 +6,7 @@
 /*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:16:57 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/22 20:18:22 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/23 15:40:58 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,18 @@
 int	check_dinner(t_philo *philo)
 {
 	int	i;
+	pthread_mutex_t	check_dinner;
 
-	pthread_mutex_lock(philo->lock_meals);
+	pthread_mutex_init(&check_dinner, NULL);
+	pthread_mutex_lock(&check_dinner);
 	i = philo->data->times_must_eat;
 	if (philo->total_meals == i)
 	{
 		philo->data->dinner_is_over = 1;
-		pthread_mutex_unlock(philo->lock_meals);
+		pthread_mutex_unlock(&check_dinner);
 		return (1);
 	}
-	pthread_mutex_unlock(philo->lock_meals);
+	pthread_mutex_unlock(&check_dinner);
 	return (0);
 }
 

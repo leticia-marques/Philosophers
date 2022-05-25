@@ -24,6 +24,8 @@ typedef struct s_data
 	pthread_mutex_t		*stop_dinner;
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		*lock_print;
+	pthread_mutex_t		*check_dinner;
+	pthread_mutex_t		*get_timestamp;
 	long				timestamp;
 	int					dinner_is_over;
 	int					is_alone;

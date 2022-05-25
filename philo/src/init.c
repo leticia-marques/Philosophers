@@ -6,7 +6,7 @@
 /*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:21:08 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/23 16:35:33 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/25 14:59:30 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ static void	init_mutex(t_data **data)
 
 	(*data)->stop_dinner = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 1);
 	(*data)->lock_print = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 1);
+	(*data)->check_dinner = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 1);
+	(*data)->get_timestamp = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 1);
+
 	if (!(*data)->lock_print)
 		printf("Malloc failed.\n");
 	if (!(*data)->stop_dinner)
@@ -31,6 +34,9 @@ static void	init_mutex(t_data **data)
 		pthread_mutex_init(&(*data)->forks[i], NULL);
 	pthread_mutex_init((*data)->lock_print, NULL);
 	pthread_mutex_init((*data)->stop_dinner, NULL);
+	pthread_mutex_init((*data)->check_dinner, NULL);
+	pthread_mutex_init((*data)->get_timestamp, NULL);
+
 }
 
 void	init_data(t_data *data, int argc, char **argv)
@@ -60,10 +66,7 @@ void	init_philosophers(t_philo **philos, t_data *data)
 	{
 		(*philos)[i].lock_meals = (pthread_mutex_t *) \
 				malloc(sizeof(pthread_mutex_t));
-		// (*philos)[i].is_alive = (pthread_mutex_t *)
-		// 		malloc(sizeof(pthread_mutex_t));
 		pthread_mutex_init((*philos)[i].lock_meals, NULL);
-		// pthread_mutex_init((*philos)[i].is_alive, NULL);
 		(*philos)[i].id = i + 1;
 		(*philos)[i].total_meals = 0;
 		(*philos)[i].data = data;

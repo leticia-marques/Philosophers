@@ -6,7 +6,7 @@
 /*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 00:47:29 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/23 20:01:34 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/25 15:39:26 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,13 @@ long get_time(void)
 static void	*call_actions(void *philo_void)
 {
 	t_philo *philo;
-	pthread_mutex_t	get_timestamp;
 
-	pthread_mutex_init(&get_timestamp, NULL);
 	philo = (t_philo *)philo_void;
 	if (philo->id % 2 == 0)
 		usleep(50);
-	pthread_mutex_lock(&get_timestamp);
+	pthread_mutex_lock(philo->data->get_timestamp);
 	philo->data->timestamp = get_time();
-	pthread_mutex_unlock(&get_timestamp);
+	pthread_mutex_unlock(philo->data->get_timestamp);
 	while (philo->data->dinner_is_over == 0)
 	{
 		eat(philo);
@@ -66,7 +64,7 @@ static void	*monitor_philos(void *philos_void)
 				return (NULL);
 			}
 		}
-		usleep(100);
+		usleep(3000);
 	}
 	return (NULL);
 }

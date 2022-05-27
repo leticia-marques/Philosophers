@@ -6,7 +6,7 @@
 /*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 22:33:03 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/25 15:25:03 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:30:44 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	add_meal(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
+
 	pthread_mutex_lock(philo->left_fork);
 	pthread_mutex_lock(philo->right_fork);
 	if (check_dinner(philo) == 1)
@@ -32,7 +33,7 @@ void	eat(t_philo *philo)
 	print_actions(FORK, philo);
 	print_actions(FORK, philo);
 	print_actions(EAT, philo);
-	usleep(philo->data->time_to_eat);
+	usleep(philo->data->time_to_eat * 1000);
 	pthread_mutex_lock(philo->lock_meals);
 	philo->last_meal = get_time();
 	pthread_mutex_unlock(philo->lock_meals);
@@ -44,11 +45,11 @@ void	eat(t_philo *philo)
 void	philo_sleep(t_philo *philo)
 {
 	print_actions(SLEEP, philo);
-	usleep(philo->data->time_to_sleep );
+	usleep(philo->data->time_to_sleep * 1000);
 }
 
 void	think(t_philo *philo)
 {
 	print_actions(THINK, philo);
-	usleep(500);
+	usleep(200);
 }

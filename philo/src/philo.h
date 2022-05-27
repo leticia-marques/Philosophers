@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/26 16:31:12 by lemarque          #+#    #+#             */
+/*   Updated: 2022/05/26 21:45:08 by lemarque         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 #define PHILO_H
 
@@ -17,15 +29,13 @@
 typedef struct s_data
 {
 	int					philos_number;
-	long					time_to_die;
+	long				time_to_die;
 	int					times_must_eat;
-	long					time_to_sleep;
+	long				time_to_sleep;
 	long				time_to_eat;
-	pthread_mutex_t		*stop_dinner;
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		*lock_print;
 	pthread_mutex_t		*check_dinner;
-	pthread_mutex_t		*get_timestamp;
 	long				timestamp;
 	int					dinner_is_over;
 	int					is_alone;
@@ -38,9 +48,8 @@ typedef struct s_philo
 	long			last_meal;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*is_alive; //checks if philo has died
-	pthread_mutex_t	*lock_meals; //checks if philo has eaten n times
-	int				total_meals; //times philo has eaten
+	pthread_mutex_t	*lock_meals;
+	int				total_meals;
 	t_data			*data;
 }				t_philo;
 //Libft
@@ -59,6 +68,7 @@ int		finished_dinner(t_philo *philos);
 void	philo_sleep(t_philo *philo);
 void	think(t_philo *philo);
 void	init_threads(t_data *data, t_philo *philos);
+void	free_mem(t_data *data);
 
 
 #endif

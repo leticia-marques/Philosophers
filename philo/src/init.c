@@ -6,7 +6,7 @@
 /*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:21:08 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/25 14:59:30 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/26 17:24:43 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,19 @@ static void	init_mutex(t_data **data)
 {
 	int	i;
 
-	(*data)->stop_dinner = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 1);
 	(*data)->lock_print = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 1);
 	(*data)->check_dinner = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 1);
-	(*data)->get_timestamp = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 1);
-
-	if (!(*data)->lock_print)
-		printf("Malloc failed.\n");
-	if (!(*data)->stop_dinner)
-	{
-		free((*data)->lock_print);
-		printf("Malloc failed.\n");
-	}
 	(*data)->forks = malloc(sizeof(pthread_mutex_t) * (*data)->philos_number);
+	if (!(*data)->lock_print || !(*data)->check_dinner || !(*data)->forks)
+	{
+		free_mem(*data);
+		exit(EXIT_FAILURE);
+	}
 	i = -1;
 	while (++i < (*data)->philos_number)
 		pthread_mutex_init(&(*data)->forks[i], NULL);
 	pthread_mutex_init((*data)->lock_print, NULL);
-	pthread_mutex_init((*data)->stop_dinner, NULL);
 	pthread_mutex_init((*data)->check_dinner, NULL);
-	pthread_mutex_init((*data)->get_timestamp, NULL);
-
 }
 
 void	init_data(t_data *data, int argc, char **argv)
@@ -46,7 +38,7 @@ void	init_data(t_data *data, int argc, char **argv)
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	data->times_must_eat = 0;
+	data->times_must_eat = -1;
 	data->timestamp = 0;
 	data->dinner_is_over = 0;
 	if (argc == 6)
@@ -72,6 +64,6 @@ void	init_philosophers(t_philo **philos, t_data *data)
 		(*philos)[i].data = data;
 		(*philos)[i].left_fork = &data->forks[i];
 		(*philos)[i].right_fork = &data->forks[(i+1) % data->philos_number];
-		(*philos)[i].last_meal = get_time();
+		(*philos)[i].last_meal = 0;
 	}
 }

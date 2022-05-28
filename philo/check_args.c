@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lemarque < lemarque@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 00:18:47 by lemarque          #+#    #+#             */
-/*   Updated: 2022/04/07 11:34:50 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:24:27 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,4 @@ void	check_args(int argc, char **argv)
 			}
 		}
 	}
-
 }

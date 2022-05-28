@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 22:33:03 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/26 15:30:44 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:24:09 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	add_meal(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
-
 	pthread_mutex_lock(philo->left_fork);
 	pthread_mutex_lock(philo->right_fork);
 	if (check_dinner(philo) == 1)

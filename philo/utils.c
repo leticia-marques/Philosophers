@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:16:57 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/26 21:07:35 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:25:18 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	print_actions(int act, t_philo *philo)
 	if (act == EAT)
 		printf("%5ld %3d IS EATING\n", current_time, philo->id);
 	if (act == SLEEP)
-		printf("%5ld %3d IS SLEEPING\n", current_time,  philo->id);
+		printf("%5ld %3d IS SLEEPING\n", current_time, philo->id);
 	if (act == THINK)
 		printf("%5ld %3d IS THINKING\n", current_time, philo->id);
 	if (act == FORK)

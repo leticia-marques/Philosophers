@@ -3,28 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 16:31:12 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/28 13:07:58 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:26:21 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
-#define PHILO_H
+# define PHILO_H
 
-#include<pthread.h>//thread
-#include<unistd.h>//write
-#include<stdlib.h>//malloc
-#include<stdio.h>//printf
-#include<sys/time.h>
+# include<pthread.h>//thread
+# include<unistd.h>//write
+# include<stdlib.h>//malloc
+# include<stdio.h>//printf
+# include<sys/time.h>
 
-
-# define	EAT 1
-# define	SLEEP 2
-# define	THINK 3
-# define	FORK 4
-# define	DIED 5
+# define EAT 1
+# define SLEEP 2
+# define THINK 3
+# define FORK 4
+# define DIED 5
 
 typedef struct s_data
 {
@@ -68,6 +67,5 @@ void	philo_sleep(t_philo *philo);
 void	think(t_philo *philo);
 void	init_threads(t_data *data, t_philo *philos);
 void	free_mem(t_data *data);
-
 
 #endif

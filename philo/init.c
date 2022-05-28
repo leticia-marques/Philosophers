@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:21:08 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/28 13:08:12 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:22:41 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ static void	init_mutex(t_data **data)
 {
 	int	i;
 
-	(*data)->lock_print = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 1);
-	(*data)->check_dinner = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 1);
+	(*data)->lock_print = (pthread_mutex_t *)malloc \
+		(sizeof(pthread_mutex_t) * 1);
+	(*data)->check_dinner = (pthread_mutex_t *)malloc \
+		(sizeof(pthread_mutex_t) * 1);
 	(*data)->forks = malloc(sizeof(pthread_mutex_t) * (*data)->philos_number);
 	if (!(*data)->lock_print || !(*data)->check_dinner || !(*data)->forks)
 	{
@@ -62,7 +64,7 @@ void	init_philosophers(t_philo **philos, t_data *data)
 		(*philos)[i].total_meals = 0;
 		(*philos)[i].data = data;
 		(*philos)[i].left_fork = &data->forks[i];
-		(*philos)[i].right_fork = &data->forks[(i+1) % data->philos_number];
+		(*philos)[i].right_fork = &data->forks[(i + 1) % data->philos_number];
 		(*philos)[i].last_meal = 0;
 	}
 }

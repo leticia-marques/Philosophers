@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 00:12:03 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/26 16:53:40 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:23:54 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	free_philos(t_philo *philos, int n)
 
 void	free_mem(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < data->philos_number)
@@ -51,13 +51,13 @@ void	free_mem(t_data *data)
 	}
 	if (data->forks)
 		free(data->forks);
-
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_data data;
-	t_philo *philos;
+	t_data	data;
+	t_philo	*philos;
+
 	check_args(argc, argv);
 	init_data(&data, argc, argv);
 	init_philosophers(&philos, &data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lemarque < lemarque@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 00:22:50 by lemarque          #+#    #+#             */
-/*   Updated: 2022/04/12 01:28:42 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:19:31 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,3 @@ void	ft_putendl_fd(char *s, int fd)
 		write(fd, s, ft_strlen(s));
 	write(fd, "\n", 1);
 }
-

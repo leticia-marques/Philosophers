@@ -6,7 +6,7 @@
 /*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 16:31:12 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/26 21:45:08 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/05/28 13:07:58 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_data
 	pthread_mutex_t		*check_dinner;
 	long				timestamp;
 	int					dinner_is_over;
-	int					is_alone;
 }				t_data;
 
 typedef struct s_philo

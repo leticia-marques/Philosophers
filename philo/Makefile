@@ -1,21 +1,23 @@
 NAME = philo
 
-SRC_DIR = ./src
+#SRC_DIR = ./src
 SRC = main.c libft.c check_args.c init.c threads.c actions.c utils.c
-SRC_PATH = $(addprefix$(SRC_DIR)/, $(SRC))
+#SRC_PATH = $(addprefix$(SRC_DIR)/, $(SRC))
 OBJ_DIR = ./objs
+
+
 OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-INCLUDES = -I philo.h
+INCLUDES = -I .
 MKDIR = mkdir -p $(@D)
 
 all: $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: %.c
 	$(MKDIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 

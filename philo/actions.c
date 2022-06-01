@@ -43,12 +43,19 @@ void	eat(t_philo *philo)
 
 void	philo_sleep(t_philo *philo)
 {
-	print_actions(SLEEP, philo);
-	usleep(philo->data->time_to_sleep * 1000);
+	if (check_dinner(philo) != 1)
+	{
+		print_actions(SLEEP, philo);
+		usleep(philo->data->time_to_sleep * 1000);
+	}
 }
 
 void	think(t_philo *philo)
 {
-	print_actions(THINK, philo);
-	usleep(200);
+	if (check_dinner(philo) != 1)
+	{
+		print_actions(THINK, philo);
+		usleep(300);
+
+	}
 }

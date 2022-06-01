@@ -18,13 +18,12 @@ int	check_dinner(t_philo *philo)
 
 	pthread_mutex_lock(philo->data->check_dinner);
 	i = philo->data->times_must_eat;
+	pthread_mutex_unlock(philo->data->check_dinner);
 	if (philo->total_meals == i || philo->data->dinner_is_over == 1)
 	{
 		philo->data->dinner_is_over = 1;
-		pthread_mutex_unlock(philo->data->check_dinner);
 		return (1);
 	}
-	pthread_mutex_unlock(philo->data->check_dinner);
 	return (0);
 }
 
@@ -50,14 +49,14 @@ void	print_actions(int act, t_philo *philo)
 	pthread_mutex_lock(philo->data->lock_print);
 	current_time = (get_time() - philo->data->timestamp);
 	if (act == EAT)
-		printf("%5ld %3d IS EATING\n", current_time, philo->id);
+		printf("%5ld %3d is eating\n", current_time, philo->id);
 	if (act == SLEEP)
-		printf("%5ld %3d IS SLEEPING\n", current_time, philo->id);
+		printf("%5ld %3d is sleeping\n", current_time, philo->id);
 	if (act == THINK)
-		printf("%5ld %3d IS THINKING\n", current_time, philo->id);
+		printf("%5ld %3d is thinking\n", current_time, philo->id);
 	if (act == FORK)
-		printf("%5ld %3d TOOK A FORK\n", current_time, philo->id);
+		printf("%5ld %3d has taken a fork\n", current_time, philo->id);
 	if (act == DIED)
-		printf("%5ld %3d DIED\n", current_time, philo->id);
+		printf("%5ld %3d die\n", current_time, philo->id);
 	pthread_mutex_unlock(philo->data->lock_print);
 }

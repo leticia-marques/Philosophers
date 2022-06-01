@@ -37,7 +37,7 @@ static void	*call_actions(void *philo_void)
 		usleep(300);
 	if (philo->data->philos_number == 1)
 		return (alone(philo));
-	while (philo->data->dinner_is_over < 1)
+	while (check_dinner(philo) != 1)
 	{
 		eat(philo);
 		if (check_dinner(philo) == 1)
@@ -55,7 +55,7 @@ static void	*monitor_philos(void *philos_void)
 	long	now;
 
 	philos = (t_philo *)philos_void;
-	while (finished_dinner(philos) == 1)
+	while (finished_dinner(philos) != 0)
 	{
 		i = -1;
 		while (++i < philos[0].data->philos_number)
@@ -70,7 +70,7 @@ static void	*monitor_philos(void *philos_void)
 				return (NULL);
 			}
 		}
-		usleep(300);
+		usleep(1000);
 	}
 	return (NULL);
 }

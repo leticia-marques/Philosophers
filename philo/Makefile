@@ -19,7 +19,7 @@ all: $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	$(MKDIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS)  $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJ_FILES)
 		$(MKDIR)

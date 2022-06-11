@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 00:47:29 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/28 18:21:03 by coder            ###   ########.fr       */
+/*   Updated: 2022/06/11 19:33:18 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	*call_actions(void *philo_void)
 	while (check_dinner(philo) != 1)
 	{
 		eat(philo);
-		if (check_dinner(philo) == 1)
+		if (get_meals(philo) == philo->data->times_must_eat)
 			return (NULL);
 		philo_sleep(philo);
 		think(philo);
@@ -61,11 +61,9 @@ static void	*monitor_philos(void *philos_void)
 		while (++i < philos[0].data->philos_number)
 		{
 			now = (get_time() - philos->data->timestamp);
-			if (now - philos[i].last_meal > philos[i].data->time_to_die)
+			if ((now - get_last_meal(&philos[i])) > philos[i].data->time_to_die)
 			{
-				pthread_mutex_lock(philos->data->check_dinner);
-				philos[i].data->dinner_is_over = 1;
-				pthread_mutex_unlock(philos->data->check_dinner);
+				finished_dinner(&philos[i]);
 				print_actions(DIED, &philos[i]);
 				return (NULL);
 			}

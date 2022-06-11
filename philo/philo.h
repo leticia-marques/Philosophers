@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 16:31:12 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/28 18:26:21 by coder            ###   ########.fr       */
+/*   Updated: 2022/06/11 19:33:06 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_data
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		*lock_print;
 	pthread_mutex_t		*check_dinner;
+	pthread_mutex_t		*lock_dinner;
 	long				timestamp;
 	int					dinner_is_over;
 }				t_data;
@@ -67,5 +68,8 @@ void	philo_sleep(t_philo *philo);
 void	think(t_philo *philo);
 void	init_threads(t_data *data, t_philo *philos);
 void	free_mem(t_data *data);
+int		get_meals(t_philo *philo);
+void	dinner_is_over(t_philo *philo);
+long	get_last_meal(t_philo *philo);
 
 #endif

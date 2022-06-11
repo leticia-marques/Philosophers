@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:21:08 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/28 18:22:41 by coder            ###   ########.fr       */
+/*   Updated: 2022/06/11 19:38:54 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ static void	init_mutex(t_data **data)
 		(sizeof(pthread_mutex_t) * 1);
 	(*data)->check_dinner = (pthread_mutex_t *)malloc \
 		(sizeof(pthread_mutex_t) * 1);
+	(*data)->lock_dinner = (pthread_mutex_t *)malloc \
+		(sizeof(pthread_mutex_t) * 1);
 	(*data)->forks = malloc(sizeof(pthread_mutex_t) * (*data)->philos_number);
-	if (!(*data)->lock_print || !(*data)->check_dinner || !(*data)->forks)
+	if (!(*data)->lock_print || !(*data)->check_dinner || !(*data)->lock_dinner || !(*data)->forks)
 	{
 		free_mem(*data);
 		exit(EXIT_FAILURE);
@@ -31,6 +33,8 @@ static void	init_mutex(t_data **data)
 		pthread_mutex_init(&(*data)->forks[i], NULL);
 	pthread_mutex_init((*data)->lock_print, NULL);
 	pthread_mutex_init((*data)->check_dinner, NULL);
+	pthread_mutex_init((*data)->lock_dinner, NULL);
+
 }
 
 void	init_data(t_data *data, int argc, char **argv)

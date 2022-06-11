@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 00:12:03 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/28 18:23:54 by coder            ###   ########.fr       */
+/*   Updated: 2022/06/11 19:37:48 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ void	free_mem(t_data *data)
 	{
 		pthread_mutex_destroy(data->lock_print);
 		free(data->lock_print);
+	}
+	if (data->lock_dinner)
+	{
+		pthread_mutex_destroy(data->lock_dinner);
+		free(data->lock_dinner);
 	}
 	if (data->forks)
 		free(data->forks);

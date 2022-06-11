@@ -3,27 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:16:57 by lemarque          #+#    #+#             */
-/*   Updated: 2022/05/28 18:25:18 by coder            ###   ########.fr       */
+/*   Updated: 2022/06/11 19:32:39 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"philo.h"
 
-int	check_dinner(t_philo *philo)
+long	get_last_meal(t_philo *philo)
+{
+	long	last_meal;
+
+	pthread_mutex_lock(philo->lock_meals);
+	last_meal = philo->last_meal;
+	pthread_mutex_unlock(philo->lock_meals);
+	return (last_meal);
+}
+void	dinner_is_over(t_philo *philo)
+{
+	pthread_mutex_lock(philo->data->lock_dinner);
+	philo->data->dinner_is_over = 1;
+	pthread_mutex_unlock(philo->data->lock_dinner);
+}
+
+int	get_meals(t_philo *philo)
 {
 	int	i;
+	pthread_mutex_lock(philo->lock_meals);
+	i = philo->total_meals;
+	pthread_mutex_unlock(philo->lock_meals);
+	return (i);
+}
 
+int	check_dinner(t_philo *philo)
+{
 	pthread_mutex_lock(philo->data->check_dinner);
-	i = philo->data->times_must_eat;
-	pthread_mutex_unlock(philo->data->check_dinner);
-	if (philo->total_meals == i || philo->data->dinner_is_over == 1)
+	if (philo->data->dinner_is_over == 1)
 	{
-		philo->data->dinner_is_over = 1;
-		return (1);
+		pthread_mutex_unlock(philo->data->check_dinner);
+		return(philo->data->dinner_is_over);
 	}
+	pthread_mutex_unlock(philo->data->check_dinner);
 	return (0);
 }
 
@@ -36,7 +58,7 @@ int	finished_dinner(t_philo *philos)
 	i = -1;
 	while (++i < philos_number)
 	{
-		if (check_dinner(&philos[i]) != 1)
+		if (get_meals(&philos[i]) != philos[i].data->times_must_eat)
 			return (1);
 	}
 	return (0);

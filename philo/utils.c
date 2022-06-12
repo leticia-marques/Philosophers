@@ -6,7 +6,7 @@
 /*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:16:57 by lemarque          #+#    #+#             */
-/*   Updated: 2022/06/11 19:32:39 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/06/12 19:34:00 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	get_meals(t_philo *philo)
 
 int	check_dinner(t_philo *philo)
 {
-	pthread_mutex_lock(philo->data->check_dinner);
+	pthread_mutex_lock(philo->data->lock_dinner);
 	if (philo->data->dinner_is_over == 1)
 	{
-		pthread_mutex_unlock(philo->data->check_dinner);
+		pthread_mutex_unlock(philo->data->lock_dinner);
 		return(philo->data->dinner_is_over);
 	}
-	pthread_mutex_unlock(philo->data->check_dinner);
+	pthread_mutex_unlock(philo->data->lock_dinner);
 	return (0);
 }
 
@@ -70,15 +70,15 @@ void	print_actions(int act, t_philo *philo)
 
 	pthread_mutex_lock(philo->data->lock_print);
 	current_time = (get_time() - philo->data->timestamp);
-	if (act == EAT)
+	if (act == EAT && check_dinner(philo) == 0)
 		printf("%5ld %3d is eating\n", current_time, philo->id);
-	if (act == SLEEP)
+	if (act == SLEEP  && check_dinner(philo) == 0)
 		printf("%5ld %3d is sleeping\n", current_time, philo->id);
-	if (act == THINK)
+	if (act == THINK  && check_dinner(philo) == 0)
 		printf("%5ld %3d is thinking\n", current_time, philo->id);
-	if (act == FORK)
+	if (act == FORK  && check_dinner(philo) == 0)
 		printf("%5ld %3d has taken a fork\n", current_time, philo->id);
 	if (act == DIED)
-		printf("%5ld %3d die\n", current_time, philo->id);
+		printf("%5ld %3d died\n", current_time, philo->id);
 	pthread_mutex_unlock(philo->data->lock_print);
 }

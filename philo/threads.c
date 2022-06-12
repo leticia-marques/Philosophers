@@ -6,7 +6,7 @@
 /*   By: lemarque <lemarque@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 00:47:29 by lemarque          #+#    #+#             */
-/*   Updated: 2022/06/11 19:33:18 by lemarque         ###   ########.fr       */
+/*   Updated: 2022/06/12 14:05:48 by lemarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ static void	*monitor_philos(void *philos_void)
 		while (++i < philos[0].data->philos_number)
 		{
 			now = (get_time() - philos->data->timestamp);
-			if ((now - get_last_meal(&philos[i])) > philos[i].data->time_to_die)
+			if (now - get_last_meal(&philos[i]) > philos[i].data->time_to_die)
 			{
-				finished_dinner(&philos[i]);
+				dinner_is_over(&philos[i]);
 				print_actions(DIED, &philos[i]);
 				return (NULL);
 			}

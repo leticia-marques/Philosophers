@@ -2,6 +2,7 @@ NAME = philo
 
 #SRC_DIR = ./src
 SRC = main.c libft.c check_args.c init.c threads.c actions.c utils.c
+SRC+= print_actions.c
 #SRC_PATH = $(addprefix$(SRC_DIR)/, $(SRC))
 OBJ_DIR = ./objs
 

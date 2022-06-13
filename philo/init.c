@@ -23,7 +23,8 @@ static void	init_mutex(t_data **data)
 	(*data)->lock_dinner = (pthread_mutex_t *)malloc \
 		(sizeof(pthread_mutex_t) * 1);
 	(*data)->forks = malloc(sizeof(pthread_mutex_t) * (*data)->philos_number);
-	if (!(*data)->lock_print || !(*data)->check_dinner || !(*data)->lock_dinner || !(*data)->forks)
+	if (!(*data)->lock_print || !(*data)->check_dinner || \
+		!(*data)->lock_dinner || !(*data)->forks)
 	{
 		free_mem(*data);
 		exit(EXIT_FAILURE);
@@ -34,7 +35,6 @@ static void	init_mutex(t_data **data)
 	pthread_mutex_init((*data)->lock_print, NULL);
 	pthread_mutex_init((*data)->check_dinner, NULL);
 	pthread_mutex_init((*data)->lock_dinner, NULL);
-
 }
 
 void	init_data(t_data *data, int argc, char **argv)
